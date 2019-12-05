@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional (readOnly = true)
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-     User user = userDao.findByUserName(userName);
+     User user = userDao.findByUsername(userName);
      Set<GrantedAuthority> grandAuthorities = new HashSet<>();
 
      for (Role role: user.getRoles()){
