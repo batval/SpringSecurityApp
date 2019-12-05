@@ -1,6 +1,7 @@
 package com.batval.springsecurityapp.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Simple Java bean object that represents role of {@link User}.
