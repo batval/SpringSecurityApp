@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * Implementation of {@link SecurityService} interface
  *
- * @author  Baturo Valery
+ * @author Baturo Valery
  * @version 1.0
  */
 
@@ -31,21 +31,21 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String findLoggedInUserName() {
-    Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
-    if (userDetails instanceof UserDetailsService){
-        ((UserDetails) userDetails).getUsername();
-    }
+        Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
+        if (userDetails instanceof UserDetailsService) {
+            ((UserDetails) userDetails).getUsername();
+        }
         return null;
     }
 
     @Override
     public void autoLogin(String userName, String password) {
-UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails,password,userDetails.getAuthorities());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
         authenticationManager.authenticate(authenticationToken);
-        if (authenticationToken.isAuthenticated()){
+        if (authenticationToken.isAuthenticated()) {
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            logger.debug(String.format("Successfully %s auto logged in",userName));
+            logger.debug(String.format("Successfully %s auto logged in", userName));
         }
 
     }
